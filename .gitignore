@@ -1,0 +1,90 @@
+# ==============================
+#  General Python Ignored Files
+# ==============================
+
+# Byte-compiled / cached Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyo
+*.pdb
+*.so
+*.egg-info/
+*.pkl
+
+# Virtual environment
+venv/
+.env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Package managers
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# ==============================
+#  Editor and IDE Specific Files
+# ==============================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+*.iml
+out/
+*.ipr
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Vim
+*.swp
+*.swo
+*.swn
+*.un~
+.netrwhist
+
+# ==============================
+#  Operating System Files
+# ==============================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.idea/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.*~
+.cache/
+.config/
+.local/

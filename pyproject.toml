@@ -1,0 +1,19 @@
+[project]
+name = "air-edge"
+version = "0.1.0"
+description = "Virtual Air Hockey Platform"
+authors = [
+    {name = "CosecSecCot",email = "cosecseccot581@gmail.com"},
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pygame (>=2.6.1,<3.0.0)",
+    "opencv-python (>=4.11.0.86,<5.0.0.0)",
+    "websockets (>=15.0.1,<16.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
