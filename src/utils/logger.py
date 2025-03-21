@@ -25,12 +25,12 @@ class CustomFormatter(logging.Formatter):
         return formatter.format(record)
 
 
-client_logger = logging.getLogger("Client")
-client_logger.setLevel(logging.DEBUG)
+server_logger = logging.getLogger("Server")
+server_logger.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler()  # using sys.stdcerr
 console_handler.setLevel(logging.DEBUG)
 
 console_handler.setFormatter(CustomFormatter())
 
-client_logger.addHandler(console_handler)
+server_logger.addHandler(console_handler)

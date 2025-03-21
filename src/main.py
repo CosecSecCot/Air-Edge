@@ -1,13 +1,19 @@
-from application import Application
-from utils.logger import client_logger
+import asyncio
+import websockets
+
+import networking
+from utils.logger import server_logger
 
 
-def main():
-    client_logger.debug("WELCOME TO AIR EDGE!")
+PORT = 8765
 
-    app = Application()
-    app.run()
+
+async def main():
+    server_logger.debug("WELCOME TO AIR EDGE!")
+    async with websockets.serve(networking.server, "localhost", PORT):
+        server_logger.info(f"Listening on localhost:{PORT}")
+        await asyncio.Future()  # run forever
 
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
