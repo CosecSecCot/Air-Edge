@@ -18,7 +18,9 @@ class Application:
         )
         self.clock = pygame.time.Clock()
         self.delta_time = 0.1
-        self.network_client = NetworkClient(uri="ws://localhost:8765")
+        # self.network_client = NetworkClient(uri="ws://localhost:8765")
+        self.network_client = NetworkClient(
+            uri="wss://splendid-wistful-umbrella.glitch.me")
         self.running = True
 
         self.puck = Puck()
@@ -41,15 +43,16 @@ class Application:
                              (self.__screen_width, self.__screen_height//2))
 
             x, y = pygame.mouse.get_pos()
-            self.mallet.pos.x = clamp(x, self.mallet.radius,
-                                      self.__screen_width - self.mallet.radius)
+            self.mallet.pos.x = pygame.math.clamp(x, self.mallet.radius,
+                                                  self.__screen_width - self.mallet.radius)
             self.mallet.pos.y = clamp(y, self.__screen_height//2 + self.mallet.radius,
                                       self.__screen_height - self.mallet.radius)
 
             self.mallet.draw(self.screen)
 
             # send position to the server
-            self.network_client.send_mallet_position(x, y)
+            self.network_client.send_mallet_position(
+                self.mallet.pos.x, self.mallet.pos.y)
 
             # get mallet velocity
             self.mallet.update_velocity(self.mallet.pos.x, self.mallet.pos.y)
@@ -73,7 +76,18 @@ class Application:
             self.puck.draw(self.screen)
 
             # get the position of the mallet of opponent
+            opp = self.network_client.get_opponent_mallet_pos()
             # draw the mallet of opponent
+            if opp != None:
+                [oppx, oppy] = opp
+                oppx = self.__screen_width - oppx
+                oppy = 2*self.__screen_height//2 - oppy
+                # oppx = pygame.math.clamp(oppx, self.mallet.radius,
+                #                          self.__screen_width - self.mallet.radius)
+                # oppy = clamp(oppx, self.mallet.radius,
+                #              self.__screen_height//2 - self.mallet.radius)
+                pygame.draw.circle(self.screen, self.mallet.color,
+                                   (oppx, oppy), self.mallet.radius)
 
             for event in pygame.event.get():
                 if (event.type == pygame.QUIT):
